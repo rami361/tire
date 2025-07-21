@@ -417,12 +417,12 @@
 
 
 <body class="p-3 m-0 border-0 bd-example border-0 pb-4 mb-5" data-bs-theme="dark">
-    <div class="d-grid gap-2 mb-3 justify-content-center">
+    <div class="d-grid gap-2 mb-3 justify-content-center" id="weight-row">
         <div class="row gx-1">
             <div class="col text-end">
                 <label for="weight" class="col-form-label"
                 data-bs-toggle="tooltip" data-bs-placement="bottom"
-        data-bs-title="(Rider + Bike + Gear)">Gesamtgewicht:</label>
+        data-bs-title="(Rider + Bike + Gear)" id="tooltip-weight">Gesamtgewicht:</label>
             </div>
             <div class="col align-middle">
                 <div class="input-group has-validation">
@@ -781,6 +781,14 @@ cat4-gravel">Gravel -->
             calcAll();
             const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
             const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+            const tooltipWeight = bootstrap.Tooltip.getInstance('#tooltip-weight');
+            // tooltipWeight.toggleDisabled();
+            $("#weight-row").on("focusout", function() {
+                tooltipWeight.hide();
+            })
+            $("#weight").on("focus", function() {
+                tooltipWeight.show();
+            })
         });
         $("select, input").on("change", function () {
             setAccordionName();
