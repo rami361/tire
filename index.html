@@ -601,9 +601,9 @@ cat4-gravel">Gravel -->
 
     <div class="d-grid gap-2 p-2 fixed-bottom bg-dark-subtle shadow">
         <div class="btn-group" role="group" aria-label="">
-            <input type="radio" class="btn-check" name="which-tire" id="tire-front" autocomplete="off" checked>
+            <input type="radio" class="btn-check" name="which-tire" id="tire-front" autocomplete="off" value="front">
             <label class="btn btn-outline-primary rounded-start-pill" for="tire-front">Vorne</label>
-            <input type="radio" class="btn-check" name="which-tire" id="tire-back" autocomplete="off">
+            <input type="radio" class="btn-check" name="which-tire" id="tire-back" autocomplete="off" value="back">
             <label class="btn btn-outline-primary rounded-end-pill" for="tire-back">Hinten</label>
         </div>
     </div>
@@ -780,7 +780,14 @@ cat4-gravel">Gravel -->
             addMeasuredTireOptions();
             for (var iD in localStorage) {
                 if (!localStorage.hasOwnProperty(iD)) continue;
-                $("#" + iD).val(localStorage[iD]);
+                element = $("#" + iD);
+                if (element.length) {
+                    $("#" + iD).val(localStorage[iD]);
+                } else {
+                    console.log($("#" + localStorage[iD]))
+                    $("#" + localStorage[iD]).prop("checked", true);;
+                }
+                
                 setAccordionName();
             }
             calcAll();
@@ -797,7 +804,12 @@ cat4-gravel">Gravel -->
         });
         $("select, input").on("change", function () {
             setAccordionName();
-            localStorage.setItem(this.id, this.value);
+            console.log(this);
+            if (this.type != "radio") {
+                localStorage.setItem(this.id, this.value);
+            } else {
+                localStorage.setItem(this.name, this.id);
+            }
             calcAll();
         });
         function setAccordionName() {
@@ -826,7 +838,7 @@ cat4-gravel">Gravel -->
             let speedVal = Number(speed) * 0.44704
             let tireWidthVal = Number(tireWidth.val())
 
-            console.log("weight", weight, "K1", K1, "K", K, "CPP", CPP, "speedCoeff", speedCoeff, "weightDistCoeff", weightDistCoeff, "tireTypeCoeff", tireTypeCoeff)
+            // console.log("weight", weight, "K1", K1, "K", K, "CPP", CPP, "speedCoeff", speedCoeff, "weightDistCoeff", weightDistCoeff, "tireTypeCoeff", tireTypeCoeff)
 
             let front = (CPP * speedCoeff * weightDistCoeff.front) * tireTypeCoeff.front
             let back = (CPP * speedCoeff * weightDistCoeff.back) * tireTypeCoeff.back
