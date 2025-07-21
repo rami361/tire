@@ -417,21 +417,21 @@
 
 
 <body class="p-3 m-0 border-0 bd-example border-0 pb-4 mb-5" data-bs-theme="dark">
-    <div class="d-grid gap-2 mb-2 justify-content-center">
-        <div class="row">
+    <div class="d-grid gap-2 mb-3 justify-content-center">
+        <div class="row gx-1">
             <div class="col text-end">
                 <label for="weight" class="col-form-label"
                 data-bs-toggle="tooltip" data-bs-placement="bottom"
         data-bs-title="(Rider + Bike + Gear)">Gesamtgewicht:</label>
             </div>
             <div class="col align-middle">
-                <div class="input-group mb-2 has-validation">
-                    <input type="number" class="form-control" id="weight" placeholder="Gesamtgewicht" min="34"
+                <div class="input-group has-validation">
+                    <input type="number" inputmode="numeric" pattern="[0-9]*" class="form-control" id="weight" placeholder="Gesamtgewicht" min="34"
                         max="205">
                     <span class="input-group-text">kg</span>
-                    <!-- <div class="invalid-feedback" id="weight-warning">
+                    <div class="invalid-feedback" id="weight-warning">
                         Weight input between 34 – 205 kg required.
-                    </div> -->
+                    </div>
                 </div>
             </div>
         </div>
@@ -594,7 +594,7 @@ cat4-gravel">Gravel -->
         </div>
     </div> -->
 
-    <div class="d-grid gap-2 p-2 fixed-bottom bg-primary-subtle shadow">
+    <div class="d-grid gap-2 p-2 fixed-bottom bg-dark-subtle shadow">
         <div class="btn-group" role="group" aria-label="">
             <input type="radio" class="btn-check" name="which-tire" id="tire-front" autocomplete="off" checked>
             <label class="btn btn-outline-primary rounded-start-pill" for="tire-front">Vorne</label>
