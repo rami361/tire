@@ -171,7 +171,7 @@
         </div>
     </div>
 
-    <div class="d-grid gap-2 p-2 fixed-bottom bg-dark-subtle shadow">
+    <div class="d-grid gap-2 p-2 fixed-bottom bg-dark-subtle shadow" id="tire-selector">
         <div class="btn-group" role="group" aria-label="">
             <input type="radio" class="btn-check" name="which-tire" id="tire-front" autocomplete="off" value="front">
             <label class="btn btn-outline-primary rounded-start-pill" for="tire-front">Vorne</label>
@@ -318,6 +318,9 @@
         }
 
         $(window).on("load", function () {
+            if (window.navigator.standalone) {
+                $("#tire-selector").addClass("pb-4")
+            }
             addMeasuredTireOptions();
             for (var iD in localStorage) {
                 if (!localStorage.hasOwnProperty(iD)) continue;
