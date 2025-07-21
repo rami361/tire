@@ -168,17 +168,17 @@
         <div class="btn-group" role="group" aria-label="">
             <input type="radio" class="btn-check" name="unit" id="psi" autocomplete="off" checked>
             <label class="btn btn-outline-light btn-sm rounded-start-pill px-3" for="psi">psi</label>
-            <input type="radio" class="btn-check" name="unit" id="bar" autocomplete="off">
-            <label class="btn btn-outline-light btn-sm rounded-end-pill px-3" for="bar">Bar</label>
+            <input type="radio" class="btn-check" name="unit" id="Bar" autocomplete="off">
+            <label class="btn btn-outline-light btn-sm rounded-end-pill px-3" for="Bar">Bar</label>
         </div>
     </div>
 
     <div class="d-grid gap-2 p-2 fixed-bottom bg-dark-subtle shadow" id="tire-selector">
         <div class="btn-group" role="group" aria-label="">
             <input type="radio" class="btn-check" name="which-tire" id="tire-front" autocomplete="off" value="front">
-            <label class="btn btn-outline-primary rounded-start-pill" for="tire-front">Vorne</label>
+            <label class="btn btn-outline-primary rounded-start-pill" for="tire-front" id="tire-front-label">Vorne<br><strong></strong></label>
             <input type="radio" class="btn-check" name="which-tire" id="tire-back" autocomplete="off" value="back">
-            <label class="btn btn-outline-primary rounded-end-pill" for="tire-back">Hinten</label>
+            <label class="btn btn-outline-primary rounded-end-pill" for="tire-back" id="tire-back-label">Hinten<br><strong></strong></label>
         </div>
     </div>
 
@@ -366,6 +366,7 @@
             localStorage.setItem("fav", this.id)
             $(".fav").removeClass("fav text-bg-warning")
             $(this).addClass("fav text-bg-warning")
+            calcAll();
         })
         function setAccordionName() {
             $("#accordionName").text(
@@ -398,20 +399,27 @@
             let front = (CPP * speedCoeff * weightDistCoeff.front) * tireTypeCoeff.front
             let back = (CPP * speedCoeff * weightDistCoeff.back) * tireTypeCoeff.back
 
-            if ($('input[name=which-tire]:checked').attr("id") == "tire-front") {
-                if ($('input[name=unit]:checked').attr("id") == "psi") {
-                    $("#" + surface + "-" + speed).text(roundHalf(front, 4).toFixed(1))
-                } else {
-                    $("#" + surface + "-" + speed).text(round(front * 0.0689476, 1).toFixed(2))
-                }
+            let unit = $('input[name=unit]:checked').attr("id");
+
+            if (unit == "psi") {
+                front = roundHalf(front, 4).toFixed(1)
+                back = roundHalf(back, 4).toFixed(1)
             } else {
-                if ($('input[name=unit]:checked').attr("id") == "psi") {
-                    $("#" + surface + "-" + speed).text(roundHalf(back, 4).toFixed(1))
-                } else {
-                    $("#" + surface + "-" + speed).text(round(back * 0.0689476, 1).toFixed(2))
-                }
+                front = round(front * 0.0689476, 1).toFixed(2);
+                back = round(back * 0.0689476, 1).toFixed(2)
+            }
+            
+            favElement = $(".fav#" + surface + "-" + speed)
+            if (favElement.length) {
+                $("#tire-front-label").find("strong").text(front + " " + unit)
+                $("#tire-back-label").find("strong").text(back + " " + unit)
             }
 
+            if ($('input[name=which-tire]:checked').attr("id") == "tire-front") {
+                $("#" + surface + "-" + speed).text(front);
+            } else {
+                $("#" + surface + "-" + speed).text(back);
+            }
         }
     </script>
 </body>
