@@ -1,4 +1,5 @@
 <html data-bs-theme="dark">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,6 +15,10 @@
     <style>
         :root {
             --bs-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 1);
+        }
+
+        .table-active {
+            --bs-table-active-bg: rgba(227, 209, 146, 0.2);
         }
 
         .hide {
@@ -61,106 +66,104 @@
     <div class="table-responsive" id="result-table">
         <table class="table table-bordered table-striped-columns align-middle text-center">
             <thead>
-                <tr class="border-0 border-secondary-subtle">
-                    <th class="text-warning border-top-0 border-start-0 text-end" 
-                        data-bs-toggle="tooltip" data-bs-placement="top"
-                        
-                        data-bs-title="Durchschnitts-&#010;geschwindigkeit">km/h</th>
-                    <th class="text-warning border-top">18</th>
-                    <th class="text-warning border-top">20</th>
-                    <th class="text-warning border-top">22</th>
-                    <th class="text-warning border-top">24</th>
-                    <th class="text-warning border-top">26</th>
-                    <th class="text-warning border-top">28</th>
-                    <th class="text-warning border-top">30</th>
+                <tr id="border-0 border-secondary-subtle">
+                    <th class="text-warning border-top-0 border-start-0 text-end" data-bs-toggle="tooltip"
+                        data-bs-placement="top" data-bs-title="Durchschnitts-&#010;geschwindigkeit">km/h</th>
+                    <th class="text-warning border-top values speed-18">18</th>
+                    <th class="text-warning border-top values speed-20">20</th>
+                    <th class="text-warning border-top values speed-22">22</th>
+                    <th class="text-warning border-top values speed-24">24</th>
+                    <th class="text-warning border-top values speed-26">26</th>
+                    <th class="text-warning border-top values speed-28">28</th>
+                    <th class="text-warning border-top values speed-30">30</th>
                 </tr>
             </thead>
             <tbody>
-                <tr class="">
+                <tr id="new-pavement">
                     <td class="text-start text-info">Neuer<br>Asphalt</td>
-                    <td class="values" id="new-pavement-18"></td>
-                    <td class="values" id="new-pavement-20"></td>
-                    <td class="values" id="new-pavement-22"></td>
-                    <td class="values" id="new-pavement-24"></td>
-                    <td class="values" id="new-pavement-26"></td>
-                    <td class="values" id="new-pavement-28"></td>
-                    <td class="values" id="new-pavement-30"></td>
+                    <td class="values speed-18" id="new-pavement-18"></td>
+                    <td class="values speed-20" id="new-pavement-20"></td>
+                    <td class="values speed-22" id="new-pavement-22"></td>
+                    <td class="values speed-24" id="new-pavement-24"></td>
+                    <td class="values speed-26" id="new-pavement-26"></td>
+                    <td class="values speed-28" id="new-pavement-28"></td>
+                    <td class="values speed-30" id="new-pavement-30"></td>
                 </tr>
-                <tr class="">
+                <tr id="worn-pavement">
                     <td class="text-start text-info" data-bs-toggle="tooltip" data-bs-placement="right"
                         data-bs-title="Abgenutzter Asphalt / Einige Risse">Abgenutzter<br>Asphalt</td>
-                    <td class="values" id="worn-pavement-18"></td>
-                    <td class="values" id="worn-pavement-20"></td>
-                    <td class="values" id="worn-pavement-22"></td>
-                    <td class="values" id="worn-pavement-24"></td>
-                    <td class="values" id="worn-pavement-26"></td>
-                    <td class="values" id="worn-pavement-28"></td>
-                    <td class="values" id="worn-pavement-30"></td>
+                    <td class="values speed-18" id="worn-pavement-18"></td>
+                    <td class="values speed-20" id="worn-pavement-20"></td>
+                    <td class="values speed-22" id="worn-pavement-22"></td>
+                    <td class="values speed-24" id="worn-pavement-24"></td>
+                    <td class="values speed-26" id="worn-pavement-26"></td>
+                    <td class="values speed-28" id="worn-pavement-28"></td>
+                    <td class="values speed-30" id="worn-pavement-30"></td>
                 </tr>
-                <tr class="">
+                <tr id="cat1-gravel">
                     <td class="text-start text-info" data-bs-toggle="tooltip" data-bs-placement="right"
                         data-bs-title="Feiner Schotter / harter Untergrund">Gravel 1:<br>Eben & hart</td>
-                    <td class="values" id="cat1-gravel-18"></td>
-                    <td class="values" id="cat1-gravel-20"></td>
-                    <td class="values" id="cat1-gravel-22"></td>
-                    <td class="values" id="cat1-gravel-24"></td>
-                    <td class="values" id="cat1-gravel-26"></td>
-                    <td class="values" id="cat1-gravel-28"></td>
-                    <td class="values" id="cat1-gravel-30"></td>
+                    <td class="values speed-18" id="cat1-gravel-18"></td>
+                    <td class="values speed-20" id="cat1-gravel-20"></td>
+                    <td class="values speed-22" id="cat1-gravel-22"></td>
+                    <td class="values speed-24" id="cat1-gravel-24"></td>
+                    <td class="values speed-26" id="cat1-gravel-26"></td>
+                    <td class="values speed-28" id="cat1-gravel-28"></td>
+                    <td class="values speed-30" id="cat1-gravel-30"></td>
                 </tr>
-                <tr class="">
+                <tr id="poor-pavement">
                     <td class="text-start text-info" data-bs-toggle="tooltip" data-bs-placement="right"
                         data-bs-title="Schlechter Asphalt / Splittbelag">Schlechter<br>Asphalt</td>
-                    <td class="values" id="poor-pavement-18"></td>
-                    <td class="values" id="poor-pavement-20"></td>
-                    <td class="values" id="poor-pavement-22"></td>
-                    <td class="values" id="poor-pavement-24"></td>
-                    <td class="values" id="poor-pavement-26"></td>
-                    <td class="values" id="poor-pavement-28"></td>
-                    <td class="values" id="poor-pavement-30"></td>
+                    <td class="values speed-18" id="poor-pavement-18"></td>
+                    <td class="values speed-20" id="poor-pavement-20"></td>
+                    <td class="values speed-22" id="poor-pavement-22"></td>
+                    <td class="values speed-24" id="poor-pavement-24"></td>
+                    <td class="values speed-26" id="poor-pavement-26"></td>
+                    <td class="values speed-28" id="poor-pavement-28"></td>
+                    <td class="values speed-30" id="poor-pavement-30"></td>
                 </tr>
-                <tr class="">
+                <tr id="cat2-gravel">
                     <td class="text-start text-info" data-bs-toggle="tooltip" data-bs-placement="right"
                         data-bs-title="Grobkörnigerer Schotter">Gravel 2:<br>Mäßig rau</td>
-                    <td class="values" id="cat2-gravel-18"></td>
-                    <td class="values" id="cat2-gravel-20"></td>
-                    <td class="values" id="cat2-gravel-22"></td>
-                    <td class="values" id="cat2-gravel-24"></td>
-                    <td class="values" id="cat2-gravel-26"></td>
-                    <td class="values" id="cat2-gravel-28"></td>
-                    <td class="values" id="cat2-gravel-30"></td>
+                    <td class="values speed-18" id="cat2-gravel-18"></td>
+                    <td class="values speed-20" id="cat2-gravel-20"></td>
+                    <td class="values speed-22" id="cat2-gravel-22"></td>
+                    <td class="values speed-24" id="cat2-gravel-24"></td>
+                    <td class="values speed-26" id="cat2-gravel-26"></td>
+                    <td class="values speed-28" id="cat2-gravel-28"></td>
+                    <td class="values speed-30" id="cat2-gravel-30"></td>
                 </tr>
-                <tr class="">
+                <tr id="cobblestone">
                     <td class="text-start text-info">Kopfstein-<br>pflaster</td>
-                    <td class="values" id="cobblestone-18"></td>
-                    <td class="values" id="cobblestone-20"></td>
-                    <td class="values" id="cobblestone-22"></td>
-                    <td class="values" id="cobblestone-24"></td>
-                    <td class="values" id="cobblestone-26"></td>
-                    <td class="values" id="cobblestone-28"></td>
-                    <td class="values" id="cobblestone-30"></td>
+                    <td class="values speed-18" id="cobblestone-18"></td>
+                    <td class="values speed-20" id="cobblestone-20"></td>
+                    <td class="values speed-22" id="cobblestone-22"></td>
+                    <td class="values speed-24" id="cobblestone-24"></td>
+                    <td class="values speed-26" id="cobblestone-26"></td>
+                    <td class="values speed-28" id="cobblestone-28"></td>
+                    <td class="values speed-30" id="cobblestone-30"></td>
                 </tr>
-                <tr class="">
+                <tr id="cat3-gravel">
                     <td class="text-start text-info" data-bs-toggle="tooltip" data-bs-placement="right"
                         data-bs-title="Lockerer Schotter / größere Steine">Gravel 3:<br>Grobkörnig</td>
-                    <td class="values" id="cat3-gravel-18"></td>
-                    <td class="values" id="cat3-gravel-20"></td>
-                    <td class="values" id="cat3-gravel-22"></td>
-                    <td class="values" id="cat3-gravel-24"></td>
-                    <td class="values" id="cat3-gravel-26"></td>
-                    <td class="values" id="cat3-gravel-28"></td>
-                    <td class="values" id="cat3-gravel-30"></td>
+                    <td class="values speed-18" id="cat3-gravel-18"></td>
+                    <td class="values speed-20" id="cat3-gravel-20"></td>
+                    <td class="values speed-22" id="cat3-gravel-22"></td>
+                    <td class="values speed-24" id="cat3-gravel-24"></td>
+                    <td class="values speed-26" id="cat3-gravel-26"></td>
+                    <td class="values speed-28" id="cat3-gravel-28"></td>
+                    <td class="values speed-30" id="cat3-gravel-30"></td>
                 </tr>
-                <tr class="">
+                <tr id="cat4-gravel">
                     <td class="text-start text-info" data-bs-toggle="tooltip" data-bs-placement="right"
                         data-bs-title="Sehr rau / schwer befahrbar">Gravel 4:<br>Extrem rau</td>
-                    <td class="values" id="cat4-gravel-18"></td>
-                    <td class="values" id="cat4-gravel-20"></td>
-                    <td class="values" id="cat4-gravel-22"></td>
-                    <td class="values" id="cat4-gravel-24"></td>
-                    <td class="values" id="cat4-gravel-26"></td>
-                    <td class="values" id="cat4-gravel-28"></td>
-                    <td class="values" id="cat4-gravel-30"></td>
+                    <td class="values speed-18" id="cat4-gravel-18"></td>
+                    <td class="values speed-20" id="cat4-gravel-20"></td>
+                    <td class="values speed-22" id="cat4-gravel-22"></td>
+                    <td class="values speed-24" id="cat4-gravel-24"></td>
+                    <td class="values speed-26" id="cat4-gravel-26"></td>
+                    <td class="values speed-28" id="cat4-gravel-28"></td>
+                    <td class="values speed-30" id="cat4-gravel-30"></td>
                 </tr>
         </table>
     </div>
@@ -176,9 +179,11 @@
     <div class="d-grid gap-2 p-2 fixed-bottom bg-dark-subtle shadow" id="tire-selector">
         <div class="btn-group" role="group" aria-label="">
             <input type="radio" class="btn-check" name="which-tire" id="tire-front" autocomplete="off" value="front">
-            <label class="btn btn-outline-primary rounded-start-pill" for="tire-front" id="tire-front-label">Vorne<br><strong class="fs-5"></strong></label>
+            <label class="btn btn-outline-primary rounded-start-pill" for="tire-front"
+                id="tire-front-label">Vorne<br><strong class="fs-5"></strong></label>
             <input type="radio" class="btn-check" name="which-tire" id="tire-back" autocomplete="off" value="back">
-            <label class="btn btn-outline-primary rounded-end-pill" for="tire-back" id="tire-back-label">Hinten<br><strong class="fs-5"></strong></label>
+            <label class="btn btn-outline-primary rounded-end-pill" for="tire-back"
+                id="tire-back-label">Hinten<br><strong class="fs-5"></strong></label>
         </div>
     </div>
 
@@ -351,6 +356,7 @@
             $("#weight").on("focus", function () {
                 tooltipWeight.show();
             })
+            setActiveTable()
         });
         $("select, input").on("change", function () {
             setAccordionName();
@@ -366,8 +372,14 @@
             localStorage.setItem("fav", this.id)
             $(".fav").removeClass("fav text-bg-warning")
             $(this).addClass("fav text-bg-warning")
+            setActiveTable()
             calcAll();
         })
+        function setActiveTable() {
+            $(".table-active").removeClass("table-active")
+            $(".speed-" + $(".fav").attr("id").replace(/.*\w+-(\d\d)/, "$1")).addClass("table-active");
+            $(".fav").parent().addClass("table-active")
+        }
         function setAccordionName() {
             $("#accordionName").text(
                 $("#tire-width").val() + " / " +
@@ -408,7 +420,7 @@
                 front = round(front * 0.0689476, 1).toFixed(2);
                 back = round(back * 0.0689476, 1).toFixed(2)
             }
-            
+
             favElement = $(".fav#" + surface + "-" + speed)
             if (favElement.length) {
                 $("#tire-front-label").find("strong").text(front + " " + unit)
