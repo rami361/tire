@@ -318,7 +318,7 @@
         }
 
         $(window).on("load", function () {
-            if (window.navigator.standalone) {
+            if (window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches) {
                 $("#tire-selector").addClass("pb-4")
             }
             addMeasuredTireOptions();
